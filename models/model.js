@@ -8,7 +8,7 @@ class Post {
     constructor() {
         this._id = new ObjectId();
         this.author = "Anonymous";
-        this.likes = 0;
+        // this.likes = 0;
         this.content = "";
         this.comment = [];
     }
@@ -21,83 +21,6 @@ class Post {
         return this;
     }
 }
-
-MongoClient.connect(uri, async function(err, client) {
-    if (err) {
-        console.log('Unable to connect to the mongoDB server. Error:', err);
-    } else {
-        //HURRAY!! We are connected. :)
-        console.log('Connection established to', uri);
-
-        // await listDatabases(client);
-        var collection = client.db().collection(COLLECTION_NAME);
-        // post = new Post();
-        // post.setAuthor("Luu Ha").setContent("Second post");
-        // collection.insertOne(post, function(err, result) {
-        //     if (err) {
-        //         console.log(err);
-        //     } else {
-        //         console.log(result.result);
-        //     }
-        // });
-
-        // collection.find({ author: "Doan Sinh Man" }).toArray(function(err, result) {
-        //     console.log(result)
-        // });
-        // dsm = {
-        //     _id: 0x5fcd03a26537692a9827e98a,
-        //     author: 'Doan Sinh Man',
-        //     time: 1607271330488,
-        //     likes: 0,
-        //     content: 'First post',
-        //     comment: []
-        // }
-
-        // collection.insertOne(dsm, function(err, result) {
-        //         if (err) {
-        //             console.log(err);
-        //         } else {
-        //             console.log(result.result);
-        //         }
-        //     })
-        //     //Close connection
-        // collection.find({ author: "Doan Sinh Man" }).toArray(function(err, result) {
-        //     result.forEach(ele => { console.log(typeof(ele._id)); })
-        // });
-
-        // collection.deleteMany({
-        //     $or: [
-        //         { _id: 0x5fcd03a26537692a9827e98a },
-        //         { _id: '5fcd03a26537692a9827e98a' }
-        //     ]
-        // })
-        // await module.exports.insertComment("Cuong Mai", "First comment", "5fcd03a26537692a9827e98a");
-
-        // collection.find({ _id: ObjectID("5fcd03a26537692a9827e98a") }).toArray(function(err, result) {
-        //     console.log(result[0].comment[0])
-        // });
-
-        // collection.find({ $and: [{ "_id": ObjectID("5fcd03a26537692a9827e98a") }, { "comment._id": ObjectID("5fcdbf52a91e552c88b099c6") }] }).toArray(function(err, result) {
-        //     if (err) {
-        //         console.log(err)
-        //     } else {
-        //         console.log(result)
-        //     }
-        // });
-        // var cmt = new Post().setAuthor('Nguyen Quang Tung').setContent("New comment");
-        // collection.updateOne({}, { $push: { "comment.$[].comment.$[cmt_field]": cmt } }, { arrayFilters: [{ "cmt_field._id": ObjectId("5fcdbf52a91e552c88b099c6") }] })
-        // collection.updateOne({}, { $set: { "comment.$[].comment.$[cmtfield].author": "Mai Thi Kim Cuong" } }, { arrayFilters: [{ "cmtfield.author": "Cuong Mai" }] })
-        // collection.updateOne({}, { $push: { "comment.$[lev1cmt].comment": cmt } }, { arrayFilters: [{ "lev1cmt._id": ObjectId("5fcdbf52a91e552c88b099c6") }] })
-        // module.exports.insertComment("Nguyen Quang Tung", "New comment", "5fcd03a26537692a9827e98a");
-        // module.exports.insertReply("Phan Vu Hoang Hieu", "Level 3 reply", "5fcdf06f9ebd1f1a903f7072", 3);
-        // module.exports.editPost("5fcd03a26537692a9827e98a", "First post - changed again");
-        // module.exports.editComment("5fcdbf52a91e552c88b099c6", "First comment - changed");
-        // module.exports.deleteReply("5fcdf8a447aef8196021f9e5", 3)
-        // console.log(await module.exports.getPost("5fcd03a26537692a9827e98a"));
-        // console.log(await module.exports.getPostsOfPage(1));
-        client.close();
-    }
-});
 
 module.exports.insertPost = async(author, content) => {
     MongoClient.connect(uri, async function(err, client) {
