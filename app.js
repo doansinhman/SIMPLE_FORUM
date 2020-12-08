@@ -20,6 +20,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./controllers/index.js'));
+app.use('/post/', require('./controllers/post.js'));
+app.use('/api/', require('./controllers/api.js'));
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
