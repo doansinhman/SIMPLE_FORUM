@@ -5,7 +5,7 @@ const model = require('../models/model.js')
 router.get('/:page', async function(req, res, next) {
     let page = req.params.page || 1;
     let numOfPage = await model.getNumOfPage();
-    if (page < 0 || page > numOfPage) {
+    if (page < 0 || (page > numOfPage && numOfPage > 0) || isNaN(page)) {
         res.end('404 not found');
     } else {
         res.render('index', { title: 'Home', page: page, postArr: await model.getPostsOfPage(page), numOfPage: numOfPage });
