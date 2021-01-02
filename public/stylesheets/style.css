@@ -271,4 +271,5 @@ div#orderList {
     bottom: 0;
     right: 0;
     font-size: 10px;
+    z-index: 69;
 }

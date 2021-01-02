@@ -21,8 +21,8 @@
     <div class="jumbotron" id="<%=post._id%>" level="0">
         <h4>
             <%= post.author %>
-                <button class="btn btn-danger" style="float: right;" onclick="deletePost(this);">Xoá</button>
-                <button class="btn btn-warning" style="float: right;" onclick="editPost(this);">Sửa</button>
+                <button class="btn btn-outline-danger" style="float: right;" onclick="deletePost(this);">Xoá</button>
+                <button class="btn btn-outline-warning" style="float: right;" onclick="editPost(this);">Sửa</button>
         </h4>
         <h6>
             <%= post._id.getTimestamp().toLocaleString() %>
@@ -41,8 +41,8 @@
             <li class="list-group-item" level="<%=level%>" id="<%=cmt._id%>">
                 <h5>
                     <%= cmt.author%>
-                        <button class="btn btn-danger" style="float: right;" onclick="deletePost(this);">Xoá</button>
-                        <button class="btn btn-warning" style="float: right;" onclick="editPost(this);">Sửa</button>
+                        <button class="btn btn-outline-danger" style="float: right;" onclick="deletePost(this);">Xoá</button>
+                        <button class="btn btn-outline-warning" style="float: right;" onclick="editPost(this);">Sửa</button>
                 </h5>
                 <h6>
                     <%= cmt._id.getTimestamp().toLocaleString()%>
@@ -56,7 +56,7 @@
                         <div class="input-group mb-3" level="<%=level + 1%>" parent="<%=cmt._id%>">
                             <input type="text" class="form-control" placeholder="Type something...">
                             <div class="input-group-append">
-                                <button class="btn btn-success" type="submit" onclick="insertComment(this);">Comment</button>
+                                <button class="btn btn-outline-success" type="submit" onclick="insertComment(this);">Comment</button>
                             </div>
                         </div>
                     </ul>
@@ -67,7 +67,7 @@
     <div class="input-group mb-3" level="<%=level%>" parent="<%=post._id%>">
         <input type="text" class="form-control" placeholder="Type something...">
         <div class="input-group-append">
-            <button class="btn btn-success" type="submit" onclick="insertComment(this);">Comment</button>
+            <button class="btn btn-outline-success" type="submit" onclick="insertComment(this);">Comment</button>
         </div>
     </div>
     <% } %>

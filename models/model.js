@@ -1,4 +1,4 @@
-const { MongoClient, ObjectID, ObjectId, connect } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const uri = "mongodb://localhost:27017/dbs";
 const COLLECTION_NAME = 'comment';
@@ -46,7 +46,7 @@ module.exports.insertComment = async(author, content, postId) => {
         } else {
             var collection = client.db().collection(COLLECTION_NAME);
             var cmt = new Post().setAuthor(author).setContent(content);
-            collection.updateOne({ _id: ObjectID(postId) }, { $push: { comment: cmt } }, function(err, result) {
+            collection.updateOne({ _id: ObjectId(postId) }, { $push: { comment: cmt } }, function(err, result) {
                 console.log(err || result.result);
             })
         }
@@ -208,19 +208,20 @@ module.exports.getPostsOfPage = async(page) => {
 }
 
 module.exports.getNumOfPage = async() => {
-        return new Promise((resolve, reject) => {
-            MongoClient.connect(uri, async function(err, client) {
-                if (err) {
-                    console.log('Unable to connect to the mongoDB server. Error:', err);
-                } else {
-                    var collection = client.db().collection(COLLECTION_NAME);
-                    resolve(Math.ceil((await collection.countDocuments({})).toString() / POSTS_PER_PAGE));
-                }
-            });
-        }).catch((error) => { console.log(error) });
-    }
-    // async function listDatabases(client) {
-    //     databasesList = await client.db().admin().listDatabases();
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(uri, async function(err, client) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+            } else {
+                var collection = client.db().collection(COLLECTION_NAME);
+                resolve(Math.ceil((await collection.countDocuments({})).toString() / POSTS_PER_PAGE));
+            }
+        });
+    }).catch((error) => { console.log(error) });
+}
+
+// async function listDatabases(client) {
+//     databasesList = await client.db().admin().listDatabases();
 
 //     console.log("Databases:");
 //     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
